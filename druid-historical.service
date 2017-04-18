@@ -1,0 +1,13 @@
+[Unit]
+Description=Druid History
+After=network.target
+
+[Service]
+User=druid
+Group=druid
+EnvironmentFile=/etc/sysconfig/druid
+ExecStart=historical.sh start
+ExecStop=historical.sh stop
+
+[Install]
+WantedBy=multi-user.target

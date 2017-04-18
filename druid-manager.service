@@ -1,0 +1,13 @@
+[Unit]
+Description=Druid
+After=network.target
+
+[Service]
+User=druid
+Group=druid
+EnvironmentFile=/etc/sysconfig/druid
+ExecStart=middleManager.sh start
+ExecStop=middleManager.sh stop
+
+[Install]
+WantedBy=multi-user.target

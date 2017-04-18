@@ -1,0 +1,4 @@
+DRUID_LIB_DIR=/usr/lib/druid
+DRUID_CONF_DIR=/etc/druid
+DRUID_LOG_DIR=/var/log/druid
+DRUID_PID_DIR=/var/run/druid

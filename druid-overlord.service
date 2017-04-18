@@ -1,0 +1,13 @@
+[Unit]
+Description=Druid
+After=network.target
+
+[Service]
+User=druid
+Group=druid
+EnvironmentFile=/etc/sysconfig/druid
+ExecStart=overlord.sh start
+ExecStop=overlord.sh stop
+
+[Install]
+WantedBy=multi-user.target

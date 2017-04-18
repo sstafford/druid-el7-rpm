@@ -1,0 +1,13 @@
+[Unit]
+Description=Druid Coordinator
+After=network.target
+
+[Service]
+User=druid
+Group=druid
+EnvironmentFile=/etc/sysconfig/druid
+ExecStart=coordinator.sh start
+ExecStop=coordinator.sh stop
+
+[Install]
+WantedBy=multi-user.target

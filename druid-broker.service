@@ -1,0 +1,13 @@
+[Unit]
+Description=Druid Broker
+After=network.target
+
+[Service]
+User=druid
+Group=druid
+EnvironmentFile=/etc/sysconfig/druid
+ExecStart=broker.sh start
+ExecStop=broker.sh stop
+
+[Install]
+WantedBy=multi-user.target
