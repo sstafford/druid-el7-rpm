@@ -1,6 +1,6 @@
 NAME=druid
 VERSION=0.9.2
-RELEASE=1
+RELEASE=2
 
 SOURCE_FILE=$(NAME)-$(VERSION)-bin.tar.gz
 

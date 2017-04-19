@@ -103,13 +103,18 @@ mkdir -p %{buildroot}%{_install_dir}/lib
 mkdir -p %{buildroot}%{_install_dir}/bin
 %{__cp} -Rv bin/* %{buildroot}%{_install_dir}/bin
 
+# install druid extensions
+mkdir -p %{buildroot}%{_install_dir}/extensions
+%{__cp} -Rv extensions/* %{buildroot}%{_install_dir}/extensions
+
 # install druid configuration files
 mkdir -p %{buildroot}%{_conf_dir}/
 %{__cp} -Rv conf/druid/* %{buildroot}%{_conf_dir}
+ln -sf %{_install_dir}/extensions %{buildroot}%{_conf_dir}/extensions
 
 #install -p -D -m 644 %{S:1} %{buildroot}%{_conf_dir}/
 mkdir -p %{buildroot}/etc/sysconfig/
-echo "DRUID_LIB_DIR=%{_data_dir}"  >> %{buildroot}/etc/sysconfig/%{name}
+echo "DRUID_LIB_DIR=%{_install_dir}/lib"  >> %{buildroot}/etc/sysconfig/%{name}
 echo "DRUID_CONF_DIR=%{_conf_dir}" >> %{buildroot}/etc/sysconfig/%{name}
 echo "DRUID_LOG_DIR=%{_log_dir}" >> %{buildroot}/etc/sysconfig/%{name}
 echo "DRUID_PID_DIR=%{_pid_dir}" >> %{buildroot}/etc/sysconfig/%{name}
@@ -135,7 +140,6 @@ cat %{S:5} | sed 's#^ExecStart=.*#ExecStart=%{_install_dir}/bin/node.sh middleMa
 cat %{S:6} | sed 's#^ExecStart=.*#ExecStart=%{_install_dir}/bin/node.sh overlord start#g' \
            | sed 's#^ExecStop=.*#ExecStop=%{_install_dir}/bin/node.sh overlord stop#g' \
            > %{buildroot}%{_unitdir}/`basename %{S:6}`
-
 
 
 # ================================= FILES =====================================
